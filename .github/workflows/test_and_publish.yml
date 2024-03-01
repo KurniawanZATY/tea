@@ -27,7 +27,7 @@ jobs:
 
     - name: Run tests
       working-directory: src
-      run: python tea.py
+      run: python teawanzaty.py
 
   publish:
     runs-on: ubuntu-latest
