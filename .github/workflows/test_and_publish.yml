@@ -23,8 +23,7 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        python -m pip install build
-        pip install pyinputplus
+        pip install build twine pyinputplus
 
     - name: Run tests
       working-directory: src
@@ -45,14 +44,15 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        python -m pip install build
-        pip install twine
+        pip install build twine
 
-    - name: Build and publish to Test PyPI
+    - name: Build distribution
+      run: |
+        rm -rf dist/
+        python -m build --sdist --wheel
+
+    - name: Publish to Test PyPI
       env:
         TWINE_USERNAME: __token__
         TWINE_PASSWORD: ${{ secrets.pypi-AgENdGVzdC5weXBpLm9yZwIkYjE1YTYwZDItYjk0My00ZTA4LWJhYWMtMWYzY2IzODMzMzVhAAIqWzMsIjRmZTQ1YjRkLWRjZWYtNGJiOS05OWM0LTU1ZDJlMjVkZGI0NyJdAAAGIGfWBZ-Mm2XtuqA4lQGgI6GAMPPKhuqQRr6kq-4FZ2Y0 }}
-      run: |
-        rm -rf dist/
-        python -m build --sdist --wheel --config-file src/pyproject.toml -o dist/
-        twine upload --repository testpypi dist/*
+      run: twine upload --repository testpypi dist/*
