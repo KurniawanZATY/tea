@@ -1,3 +1,5 @@
+# .github/workflows/test_and_publish.yml
+
 name: Test and Publish
 
 on:
@@ -43,24 +45,16 @@ jobs:
           python -m pip install build
           pip install twine
 
-      - name: Check if version has changed
-        id: check_version
-        run: |
-          current_version=$(python -c "import sys; sys.path.append('src'); import teakiandra; print(teakiandra.__version__)")
-          previous_version=$(git describe --abbrev=0 --tags)
-          echo "Current version: $current_version"
-          echo "Previous version: $previous_version"
-          if [ "$current_version" = "$previous_version" ]; then
-            echo "No version change. Skipping publish."
-            exit 1
-          fi
-        continue-on-error: true
+      - name: Check if already published
+        id: check_publish
+        run: echo ::set-output name=published::$(if [ -f "published_flag" ]; then echo "true"; else echo "false"; fi)
 
       - name: Build and publish to Test PyPI
-        if: steps.check_version.outcome == 'success'
+        if: steps.check_publish.outputs.published != 'true'
         env:
           TWINE_USERNAME: __token__
           TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
         run: |
-          python -m build --sdist --wheel -o dist/
+          python -m build
           twine upload --repository testpypi dist/*
+          echo "true" > published_flag  # Create a flag indicating that the package has been published
