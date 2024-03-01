@@ -28,7 +28,7 @@ jobs:
         working-directory: src
         run: python tea.py
 
-    publish:
+  publish:
     runs-on: ubuntu-latest
     needs: test
     steps:
