@@ -24,7 +24,7 @@ jobs:
 
     - name: Run tests
       run: |
-        python src/tea.py
+        python tea.py
 
   publish:
     runs-on: ubuntu-latest
