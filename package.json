@@ -4,7 +4,7 @@
   "name": "tea",
   "version": "1.0.0",
   "description": "A simple script for testing PyPI",
-  "main": "tea.py",
+  "main": "teakiandra.py",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
