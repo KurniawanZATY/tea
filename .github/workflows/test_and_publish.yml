@@ -42,7 +42,7 @@ jobs:
       - name: Build and publish to Test PyPI
         env:
           TWINE_USERNAME: __token__
-          TWINE_PASSWORD: ${{ secrets..pypi-AgENdGVzdC5weXBpLm9yZwIkNmYxY2RjYTQtZmRlMC00ZmM0LTkzMjAtY2M2MzE4ZGMxODFlAAIqWzMsIjRmZTQ1YjRkLWRjZWYtNGJiOS05OWM0LTU1ZDJlMjVkZGI0NyJdAAAGIH5b3fKg-apSeJC3i8LzNw_LB9LGuoE91gI93W_0CW0- }}
+          TWINE_PASSWORD: ${{ secrets.pypi-AgENdGVzdC5weXBpLm9yZwIkNmYxY2RjYTQtZmRlMC00ZmM0LTkzMjAtY2M2MzE4ZGMxODFlAAIqWzMsIjRmZTQ1YjRkLWRjZWYtNGJiOS05OWM0LTU1ZDJlMjVkZGI0NyJdAAAGIH5b3fKg-apSeJC3i8LzNw_LB9LGuoE91gI93W_0CW0- }}
         run: |
           python -m build
           twine upload --repository testpypi dist/*
