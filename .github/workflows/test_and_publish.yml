@@ -18,11 +18,11 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          python -m pip install pytest
+          python -m pip install build
 
       - name: Run tests
         run: |
-          pytest src/
+          python src/tea.py
 
   publish:
     runs-on: ubuntu-latest
@@ -37,12 +37,12 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           python -m pip install build
-          python -m pip install twine
+          pip install twine
 
       - name: Build and publish to Test PyPI
         env:
           TWINE_USERNAME: __token__
-          TWINE_PASSWORD: ${{ secrets.pypi-AgENdGVzdC5weXBpLm9yZwIkNmYxY2RjYTQtZmRlMC00ZmM0LTkzMjAtY2M2MzE4ZGMxODFlAAIqWzMsIjRmZTQ1YjRkLWRjZWYtNGJiOS05OWM0LTU1ZDJlMjVkZGI0NyJdAAAGIH5b3fKg-apSeJC3i8LzNw_LB9LGuoE91gI93W_0CW0- }}
+          TWINE_PASSWORD: ${{ secrets.pypi-AgENdGVzdC5weXBpLm9yZwIkNmYxY2RjYTQtZmRlMC00ZmM0LTkzMjAtY2M2MzE4ZGMxODFlAAIqWzMsIjRmZTQ1YjRkLWRjZWYtNGJiOS05OWM0LTU1ZDJlMjVkZGI0NyJdAAAGIH5b3fKg-apSeJC3i8LzNw_LB9LGuoE91gI93W_0CW0-  }}
         run: |
-          python -m build
+          python -m build --sdist --wheel -o dist/
           twine upload --repository testpypi dist/*
