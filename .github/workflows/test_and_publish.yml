@@ -40,7 +40,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v3
       with:
-        python-version: 3.9
+        python-version: 3.8
 
     - name: Install dependencies
       run: |
@@ -51,8 +51,8 @@ jobs:
     - name: Build and publish to Test PyPI
       env:
         TWINE_USERNAME: __token__
-        TWINE_PASSWORD: ${{ secrets.pypi-AgENdGVzdC5weXBpLm9yZwIkMWYxZTE3OTYtMjc5OC00N2VhLWJmNWYtNjg2OTQ5ODEwNGRjAAIqWzMsIjRmZTQ1YjRkLWRjZWYtNGJiOS05OWM0LTU1ZDJlMjVkZGI0NyJdAAAGIHla2ZMGt8_wMNZmtcGYk4ZZ0qrDtV_AX6FzJxanhQx5 }}
+        TWINE_PASSWORD: ${{ secrets.pypi-AgENdGVzdC5weXBpLm9yZwIkYjE1YTYwZDItYjk0My00ZTA4LWJhYWMtMWYzY2IzODMzMzVhAAIqWzMsIjRmZTQ1YjRkLWRjZWYtNGJiOS05OWM0LTU1ZDJlMjVkZGI0NyJdAAAGIGfWBZ-Mm2XtuqA4lQGgI6GAMPPKhuqQRr6kq-4FZ2Y0 }}
       run: |
         rm -rf dist/
-        python -m build --sdist --wheel -o dist/
+        python -m build --sdist --wheel --config-file src/pyproject.toml -o dist/
         twine upload --repository testpypi dist/*
