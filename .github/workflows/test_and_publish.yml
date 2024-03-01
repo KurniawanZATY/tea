@@ -46,7 +46,7 @@ jobs:
       - name: Check if version has changed
         id: check_version
         run: |
-          current_version=$(python -c "import teakiandra; print(teakiandra.__version__)")
+          current_version=$(python -c "import sys; sys.path.append('src'); import teakiandra; print(teakiandra.__version__)")
           previous_version=$(git describe --abbrev=0 --tags)
           echo "Current version: $current_version"
           echo "Previous version: $previous_version"
@@ -62,5 +62,5 @@ jobs:
           TWINE_USERNAME: __token__
           TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
         run: |
-          python -m build
+          python -m build --sdist --wheel -o dist/
           twine upload --repository testpypi dist/*
