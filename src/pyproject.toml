@@ -3,3 +3,8 @@
 [build-system]
 requires = ["setuptools", "wheel"]
 build-backend = "setuptools.build_meta"
+
+[metadata]
+name = "tea"
+version = "0.1"
+
