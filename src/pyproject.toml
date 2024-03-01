@@ -11,3 +11,4 @@ allow_prereleases = true
   repository_url = "https://test.pypi.org/legacy/"
   username = "__token__"
   password = "pypi-AgENdGVzdC5weXBpLm9yZwIkYjE1YTYwZDItYjk0My00ZTA4LWJhYWMtMWYzY2IzODMzMzVhAAIqWzMsIjRmZTQ1YjRkLWRjZWYtNGJiOS05OWM0LTU1ZDJlMjVkZGI0NyJdAAAGIGfWBZ-Mm2XtuqA4lQGgI6GAMPPKhuqQRr6kq-4FZ2Y0"
+  project = "tea"  # Add or update this line with your project name on Test PyPI
