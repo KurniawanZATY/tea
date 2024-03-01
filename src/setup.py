@@ -1,11 +1,10 @@
 # setup.py
 
-from setuptools import setup, find_packages
+from setuptools import setup
 
 setup(
     name="tea",
     version="0.1",
-    packages=find_packages(where="src"),
-    package_dir={"": "src"},
+    packages=["src"],  # Update with the actual package name
     install_requires=[],
 )
