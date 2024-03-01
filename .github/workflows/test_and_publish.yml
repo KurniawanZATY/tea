@@ -54,7 +54,7 @@ jobs:
             echo "No version change. Skipping publish."
             exit 1
           fi
-      continue-on-error: true
+      continue-on-error: false
 
       - name: Build and publish to Test PyPI
         if: steps.check_version.outcome == 'success'
