@@ -18,7 +18,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v3
       with:
-        python-version: 3.11
+        python-version: 3.8
 
     - name: Install dependencies
       run: |
@@ -40,7 +40,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v3
       with:
-        python-version: 3.8
+        python-version: 3.9
 
     - name: Install dependencies
       run: |
@@ -51,7 +51,8 @@ jobs:
     - name: Build and publish to Test PyPI
       env:
         TWINE_USERNAME: __token__
-        TWINE_PASSWORD: ${{ secrets.pypi-AgENdGVzdC5weXBpLm9yZwIkNmYxY2RjYTQtZmRlMC00ZmM0LTkzMjAtY2M2MzE4ZGMxODFlAAIqWzMsIjRmZTQ1YjRkLWRjZWYtNGJiOS05OWM0LTU1ZDJlMjVkZGI0NyJdAAAGIH5b3fKg-apSeJC3i8LzNw_LB9LGuoE91gI93W_0CW0- }}
+        TWINE_PASSWORD: ${{ secrets.pypi-AgENdGVzdC5weXBpLm9yZwIkMWYxZTE3OTYtMjc5OC00N2VhLWJmNWYtNjg2OTQ5ODEwNGRjAAIqWzMsIjRmZTQ1YjRkLWRjZWYtNGJiOS05OWM0LTU1ZDJlMjVkZGI0NyJdAAAGIHla2ZMGt8_wMNZmtcGYk4ZZ0qrDtV_AX6FzJxanhQx5 }}
       run: |
+        rm -rf dist/
         python -m build --sdist --wheel -o dist/
         twine upload --repository testpypi dist/*
