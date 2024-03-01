@@ -4,6 +4,10 @@
 requires = ["setuptools>=49.6.0", "wheel>=0.36.2"]
 build-backend = "setuptools.build_meta"
 
-[tool.build-system]
-requires = ["setuptools>=49.6.0", "wheel>=0.36.2"]
-build-backend = "setuptools.build_meta"
+[tool.pipenv]
+allow_prereleases = true
+
+[testpypi]
+  repository_url = "https://test.pypi.org/legacy/"
+  username = "__token__"
+  password = "pypi-AgENdGVzdC5weXBpLm9yZwIkYjE1YTYwZDItYjk0My00ZTA4LWJhYWMtMWYzY2IzODMzMzVhAAIqWzMsIjRmZTQ1YjRkLWRjZWYtNGJiOS05OWM0LTU1ZDJlMjVkZGI0NyJdAAAGIGfWBZ-Mm2XtuqA4lQGgI6GAMPPKhuqQRr6kq-4FZ2Y0"
