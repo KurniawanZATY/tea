@@ -1,11 +1,6 @@
 # .github/workflows/test_and_publish.yml
 
-name: Test and Publish
-
-on:
-  push:
-    branches:
-      - main
+...
 
 jobs:
   test:
@@ -15,7 +10,10 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v3
       with:
-        python-version: 3.11.6
+        python-version: 3.8
+
+    - name: Checkout repository
+      uses: actions/checkout@v2
 
     - name: Install dependencies
       run: |
@@ -24,7 +22,7 @@ jobs:
 
     - name: Run tests
       run: |
-        python3 tea.py
+        python tea.py
 
   publish:
     runs-on: ubuntu-latest
@@ -33,7 +31,10 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v3
       with:
-        python-version: 3.11.6
+        python-version: 3.8
+
+    - name: Checkout repository
+      uses: actions/checkout@v2
 
     - name: Install dependencies
       run: |
