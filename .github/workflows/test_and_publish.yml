@@ -46,7 +46,7 @@ jobs:
       - name: Check if version has changed
         id: check_version
         run: |
-          current_version=$(python -c "import src.tea; print(src.tea.__version__)")
+          current_version=$(python -c "import src.teakiandra; print(src.teakiandra.__version__)")
           previous_version=$(git describe --abbrev=0 --tags)
           echo "Current version: $current_version"
           echo "Previous version: $previous_version"
