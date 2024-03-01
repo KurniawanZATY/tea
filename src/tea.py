@@ -3,8 +3,7 @@
 import pyinputplus as pyip
 
 def main():
-    user_input = pyip.inputStr(prompt='Enter something: ')
-    print(f'You entered: {user_input}')
+    print("Hello Team Tea")
 
 if __name__ == "__main__":
     main()
