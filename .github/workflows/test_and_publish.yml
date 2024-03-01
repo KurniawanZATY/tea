@@ -26,7 +26,7 @@ jobs:
 
       - name: Run tests
         working-directory: src
-        run: python tea.py
+        run: python teakiandra.py
 
   publish:
     runs-on: ubuntu-latest
