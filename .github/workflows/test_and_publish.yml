@@ -28,7 +28,7 @@ jobs:
 
       - name: Run tests
         working-directory: src
-        run: python teakiandra.py
+        run: python tea.py
 
   publish:
     runs-on: ubuntu-latest
@@ -55,6 +55,7 @@ jobs:
           TWINE_USERNAME: __token__
           TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
         run: |
+          cd src
           python -m build
           twine upload --repository testpypi dist/*
           echo "true" > published_flag  # Create a flag indicating that the package has been published
