@@ -1,5 +1,3 @@
-# .github/workflows/test_and_publish.yml
-
 name: Test and Publish
 
 on:
@@ -12,23 +10,23 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Set up Python
-        uses: actions/setup-python@v3
-        with:
-          python-version: 3.11
+    - name: Set up Python
+      uses: actions/setup-python@v3
+      with:
+        python-version: 3.11
 
-      - name: Checkout repository
-        uses: actions/checkout@v2
+    - name: Checkout repository
+      uses: actions/checkout@v2
 
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          python -m pip install build
-          pip install pyinputplus
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        python -m pip install build
+        pip install pyinputplus
 
-      - name: Run tests
-        working-directory: src
-        run: python teakiandra.py
+    - name: Run tests
+      working-directory: src
+      run: python teakiandra.py
 
   publish:
     runs-on: ubuntu-latest
@@ -45,17 +43,17 @@ jobs:
           python -m pip install build
           pip install twine
 
-      - name: Check if already published
-        id: check_publish
-        run: echo ::set-output name=published::$(if [ -f "published_flag" ]; then echo "true"; else echo "false"; fi)
+      - name: Check if version exists
+        run: |
+          if twine check --repository-url https://test.pypi.org/legacy/ dist/*; then
+            echo "Package already published, skipping upload."
+            exit 0
+          fi
 
       - name: Build and publish to Test PyPI
-        if: steps.check_publish.outputs.published != 'true'
         env:
           TWINE_USERNAME: __token__
           TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
         run: |
-          cd src
-          python -m build
+          python -m build --sdist --wheel -o dist/
           twine upload --repository testpypi dist/*
-          echo "true" > published_flag  # Create a flag indicating that the package has been published
